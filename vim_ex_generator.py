@@ -2,6 +2,7 @@
 
 import os
 import random
+from turtle import right
 
 # make a maze
 width = 72
@@ -14,24 +15,28 @@ maze = [[' ' for x in range(width)] for y in range(height)]
 runner_u = 0
 runner_v = 0
 
-direction = 0
+direction = 'right' 
 
 # while u is less than 72 or v is less than 72
-while (runner_u < width-1) and (runner_v < height-1):
+while (runner_v < width-1) and (runner_u < height-1):
 
     # randomly choose to change direction
     # directions: right=0, down=1, etc...
-    direction = random.randint(0, 4)
+    if random.random() < .15:
+        if direction in ['up', 'down']:
+            direction = random.choice(['right','left'])
+        elif random.random() < .5:
+            direction = random.choice(['up','down'])
 
     # if right, increment v
-    if direction == 0:
+    if direction == 'right':
         runner_v += 1
-    elif direction == 1:
-        runner_u -= 1
-    elif direction == 2:
-        runner_v -= 1
-    elif direction == 3:
+    elif direction == 'down':
         runner_u += 1
+    elif direction == 'left':
+        runner_v -= 1
+    elif direction == 'up':
+        runner_u -= 1
 
     if runner_u < 0:
         runner_u = 0
@@ -47,5 +52,5 @@ for row in maze:
     r = ''.join(row) + '\n'
     maze_string += r
 
-# print the string
-print(maze_string)
+with open('practice.txt', 'w') as outfile:
+    outfile.write(maze_string)
