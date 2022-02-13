@@ -5,8 +5,8 @@ import random
 from turtle import right
 
 # make a maze
-width = 72
-height = 36
+width = 40
+height = 20
 
 # make a grid of 72 x 72 cells
 maze = [[' ' for x in range(width)] for y in range(height)]
