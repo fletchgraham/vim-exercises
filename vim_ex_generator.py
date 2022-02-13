@@ -59,7 +59,12 @@ while (runner_v < width-1) and (runner_u < height-1):
         direction = 'down'
         runner_v = 0
 
-    maze[runner_u][runner_v] = '#'
+    if direction in ['right', 'left']:
+        maze[runner_u][runner_v] = '-'
+    else:
+        maze[runner_u][runner_v] = '|'
+
+
     current_leg += 1
 
 # join the row lists by '', join the wholey thing by newline
